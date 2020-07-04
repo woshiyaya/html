@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 一、html语义化的理解 -->
+  <!-- 1.html语义化让页面结构内容更清晰，便于浏览器和搜索引擎的解析 -->
+  <!-- 2.爬虫也依赖于html标记来确定上下文，有利于SEO -->
+  <!-- 3.即使没有css也能以一种文档的格式显示 -->
+  <!-- 4.是阅读源码的人更容易将网站分块，便于维护 -->
+
+
+  <!-- 二、对浏览器内核的理解 -->
+  <!-- 所谓的浏览器内核也就是渲染引擎，渲染引擎决定了浏览器如何显示页面内容和页面格式信息 -->
+  <!-- IE、360：trdent -->
+  <!-- 谷歌：webkit -->
+  <!-- 火狐：Gecko -->
+
+
+  <!-- 三、html5的新特性 -->
+  <!-- 1.drag拖拽 -->
+  <!-- 2.canvas画图 -->
+  <!-- 3.音频audio 视频video -->
+  <!-- 4.语义化标签header footer article aside nav -->
+  <!-- 5.本地存储 localStorage sessionStorage -->
+
+
+  <!-- 四、html5离线储存，及其原理 -->
+  <!-- 1.使用： -->
+  <!-- 1.1在html标签中引入manifest文件：<html manifest="text.appcache" -->
+  <!-- 1.2文件中存储了服务器希望缓存的文件，
+          CACHE MANIFEST //必须，表示的是缓存
+          #v0.11
+          CACHE: //需要缓存的文件
+          js/app.js
+          css/style.css
+          NETWORK://不需要缓存的文件
+          resourse/logo.png
+          FALLBACK://无法访问页面
+          /offline.html -->
+  <!-- 2.应用：在离线状态时，操作window.applicationCache进行需求实现 -->
+
+
+  <!-- 五、描述cookie，sessionStorage，localStorage -->
+  <!-- 1.cookie在同源的http请求中携带，会在浏览器和服务器之间传递；
+         sessionStorage，localStorage不会自动把数据发给服务器，只会在本地储存 -->
+  <!-- 2.cookie的数据大小不能超过4k
+         sessionStorage，localStorage比cookie大得多，可以达到5M -->
+  <!-- 3.cookie有过期时间，在过期时间内关闭浏览器也一直有效
+         sessionStorage在同一页面共享，关闭浏览器数据消失
+         localStorage在同源页面共享，除非手动删除，不然不会消失 -->
+
+
+  <!-- 六、iframe的使用及缺点 -->
+  <!-- 1.使用：假设有a文件和b文件是iframe文件,场景：点击按钮改变b文件中的字体颜色
+             在a文件中：
+                     <input type="button"  value="按钮" id="input1"></input>
+                     <iframe src="b文件路径" id="iframe1"></iframe>
+                     <script>
+                       var oInput = document.getElementById('input1')
+                       var oIframe = document.getElementById('iframe1')
+                       oInput.onclick=function(){
+                         //contentWindow代表的是Iframe的window对象
+                         oIframe.contentWindow.document.getElementById('div1').style.color='red'
+                       }
+                     </script>
+             在b文件中：
+                     <div id="div1">aaa</div>
+   -->
+   <!-- 2.缺点： -->
+   <!-- 2.1会阻塞主页面的onload事件 -->
+   <!-- 2.2搜索引擎无法解读这种页面，不利于SEO -->
+
+
+   <!-- 七、web标准及W3C -->
+   <!-- web标准是由W3C（万维网联盟）制定的 -->
+   <!-- 1.标签闭合，标签小写，不乱嵌套，提高搜索引擎的搜索几率 -->
+   <!-- 2.文件下载与页面加载速度更快，内容能被更多的用户所访问，内容能被更广泛的设备所访问 -->
+   <!-- 3.容易维护，改版方便 -->
+
+
+   <!-- 八、 xhtml和html的区别-->
+   <!-- xhtml元素必须被正确的嵌套，区分大小写，兼容性比较好，文档必须要有根元素，标签成对 -->
+
+
+   <!-- 九、Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?-->
+   <!-- 1.作用:告知浏览器以何种模式来渲染文档-->
+   <!-- 2.区分：严格模式中使用use strict，严格模式是最高的一种标准运行；混杂模式是以向后兼容的方式 -->
+   
+
+
+   <!-- 十、link和@import的区别-->
+   <!-- 1.link是html标签，@import是css提供的一种方式 -->
+   <!-- 2.@import是css2.1提出的，只有IE5以上的浏览器才能兼容，而link不存在兼容问题 -->
+   <!-- 3.@import要等到页面 -->
+
+
+   <!-- 十一、HTML的全局属性有哪些 -->
+   <!-- class id title style data-* -->
+
+
+   <!-- 十二、HTML5 为什么只需要写 <!DOCTYPE HTML> -->
+   <!-- HTML5不基于SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为；
+        HTML4.01是基于SGML，因此需要DTD进行引用-->
+
+
+   <!-- 十三、viewport -->
+   <!--  <meta name="viewport" content="width=device-width,
+         initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" /> -->
+   <!-- 分析：
+            1.width=device-width：device-width为设备的宽度
+            2.height，一般设置了宽度就不用设置高度，高度会自动解析出来
+            3.initial-scale：默认缩放比例（初始缩放比例），可以是小数
+            4.minimum-scale：允许用户最小缩放比例
+            5.maximum-scale:允许用户最大缩放比例
+            6.user-scalable：是否允许手动缩放-->
+   <!-- 延伸：如何处理移动端1px被渲染为2px -->
+   <!-- 分析：
+            1.meta标签中的 viewport属性 ，initial-scale 设置为 1
+              rem按照设计稿标准走，外加利用transfrome 的scale(0.5) 缩小一倍即可；
+            2.mate标签中的 viewport属性 ，initial-scale 设置为 0.5
+              rem 按照设计稿标准走即可 -->
+  
+
+   <!-- 十四、渲染优化 -->
+   <!-- 1.禁止使用iframe，会阻塞主页面的onload事件；搜索引擎无法解读这种页面，不利于SEO -->
+   <!-- 2.对于小图可以使用base64位编码，减少网络请求，大图不推荐 -->
+   <!-- 3.空的href和src会阻碍其他资源的加载 -->
+   <!-- 4.使用CDN托管，data缓存-->
+   <!-- 5.将样式放在顶部，图片放在底部 -->
+
+
+   <!-- 十五、为什么用多个域名来储存网站资源 -->
+   <!-- 1.CDN缓存更方便 -->
+   <!-- 2.节约cookie带宽 -->
+   <!-- 3.突破浏览器并发限制 -->
+   <!-- 4.节约主域名的连接数，优化页面的响应速度 -->
+
+
+   <!-- 十六、src和href的区别 -->
+   <!-- src指向的内容将会嵌套到文档中当前标签的位置；href指向网络资源的位置 -->
+   
+
+   <!-- 十七、一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载 -->
+   <!-- 1.图片懒加载:使用jquery中的插件，将插件引入到最后，将img的src属性换成data-lazy-src
+                    最后在加一个script代码，加到最后 -->
+   <!-- 2.如果为幻灯片，相册，可以使用图片预加载技术，将前一张和后一张先加载出来 -->
+   <!-- 3.如果为css图片，可以使用精灵图 -->
+   
+</body>
+</html>
